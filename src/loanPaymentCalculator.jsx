@@ -6,6 +6,7 @@ class LoanPaymentCalculator extends Component {
   constructor(props){
     super(props);
     this.remainingLoan = {}; //keep look up O(1)
+    this.totalPaid = 0;
     this.state = {
       payment: null,
       loanAmount: null,
@@ -36,6 +37,8 @@ class LoanPaymentCalculator extends Component {
   handleSubmit(e){
     e.preventDefault();
     let result = this.calculatePayment();
+    this.interest = result - (this.state.loanAmount/this.state.numPeriods);
+    this.totalPaid = result * this.state.numPeriods;
     this.setState({
       payment: result
     });
@@ -47,7 +50,15 @@ class LoanPaymentCalculator extends Component {
       return(
         <div>
           {Object.keys(this.remainingLoan).map(key => {
-            return <LoanPaymentIndex remainingLoan={this.remainingLoan} id={key} payment={this.state.payment} />
+            return <LoanPaymentIndex 
+                      key={key} 
+                      remainingLoan={this.remainingLoan} 
+                      id={key} 
+                      payment={this.state.payment} 
+                      total={this.totalPaid}
+                      loanAmount={this.state.loanAmount} 
+                      interest={this.interest}
+                    />
           })}
         </div>
       )
