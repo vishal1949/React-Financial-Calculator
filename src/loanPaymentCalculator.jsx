@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import LoanPaymentIndex from './loanPaymentIndex'
 
 class LoanPaymentCalculator extends Component {
 
@@ -19,10 +19,10 @@ class LoanPaymentCalculator extends Component {
   }
 
   populateRemainingLoan(){
-    this.remainingLoan[1] = this.state.payment;
+    this.remainingLoan[1] = this.calculatePayment();
     let accumulator = this.calculatePayment();
     for(let i = 1; i < this.state.numPeriods; i++){
-      accumulator += accumulator;
+      accumulator += this.calculatePayment();
       this.remainingLoan[i+1] = accumulator;
     }
   }
@@ -46,7 +46,9 @@ class LoanPaymentCalculator extends Component {
     if(!!this.state.payment){
       return(
         <div>
-          The Results are = {this.state.payment} and first is {this.remainingLoan[1]} second is {this.remainingLoan[2]}
+          {Object.keys(this.remainingLoan).map(key => {
+            return <LoanPaymentIndex remainingLoan={this.remainingLoan} id={key} payment={this.state.payment} />
+          })}
         </div>
       )
     }
