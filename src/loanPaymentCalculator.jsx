@@ -5,7 +5,7 @@ class LoanPaymentCalculator extends Component {
 
   constructor(props){
     super(props);
-
+    this.remainingLoan = {}; //keep look up O(1)
     this.state = {
       payment: null,
       loanAmount: null,
@@ -14,24 +14,39 @@ class LoanPaymentCalculator extends Component {
     };
 
     this.update = this.update.bind(this);
+    this.populateRemainingLoan = this.populateRemainingLoan.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  populateRemainingLoan(){
+    this.remainingLoan[1] = this.state.payment;
+    let accumulator = this.calculatePayment();
+    for(let i = 1; i < this.state.numPeriods; i++){
+      accumulator += accumulator;
+      this.remainingLoan[i+1] = accumulator;
+    }
+  }
+
+  calculatePayment(){
+    let top = this.state.loanAmount * this.state.interestRate / 100;
+    let bottom = 1 - Math.pow((1 + this.state.interestRate / 100), (this.state.numPeriods * -1));
+    return top / bottom;
   }
 
   handleSubmit(e){
     e.preventDefault();
-    let top = this.state.loanAmount * this.state.interestRate / 100;
-    let bottom = 1 - Math.pow(( 1 + this.state.interestRate / 100), (this.state.numPeriods * -1 ))
-    let result = top/bottom;
+    let result = this.calculatePayment();
     this.setState({
       payment: result
     });
+    this.populateRemainingLoan();
   }
 
   displayResults(){
     if(!!this.state.payment){
       return(
         <div>
-          The Results are = {this.state.payment}
+          The Results are = {this.state.payment} and first is {this.remainingLoan[1]} second is {this.remainingLoan[2]}
         </div>
       )
     }
@@ -42,6 +57,9 @@ class LoanPaymentCalculator extends Component {
       [field]: e.currentTarget.value
     });
   } 
+
+  
+
   
   render(){
     return(
