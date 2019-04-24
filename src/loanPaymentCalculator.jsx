@@ -1,11 +1,15 @@
 import React, {Component} from 'react'
 import LoanPaymentIndex from './loanPaymentIndex'
+import LoanPaymentSummary from './loanPaymentSummary';
 
 class LoanPaymentCalculator extends Component {
 
   constructor(props){
     super(props);
-    this.remainingLoan = {}; //keep look up O(1)
+    this.remainingLoan = {}; //keep look up O(1) 
+
+    //Might have to change remainging loan to state! for the rerender
+
     this.totalPaid = 0;
     this.state = {
       payment: null,
@@ -20,8 +24,8 @@ class LoanPaymentCalculator extends Component {
   }
 
   populateRemainingLoan(){
-    this.remainingLoan[1] = this.calculatePayment();
-    let accumulator = this.calculatePayment();
+    this.remainingLoan[1] = Math.floor(this.calculatePayment() * 100) / 100;
+    let accumulator = Math.floor(this.calculatePayment() * 100) / 100;
     for(let i = 1; i < this.state.numPeriods; i++){
       accumulator += this.calculatePayment();
       this.remainingLoan[i+1] = accumulator;
@@ -31,41 +35,52 @@ class LoanPaymentCalculator extends Component {
   calculatePayment(){
     let top = this.state.loanAmount * this.state.interestRate / 100;
     let bottom = 1 - Math.pow((1 + this.state.interestRate / 100), (this.state.numPeriods * -1));
-    return top / bottom;
+    return Math.floor(top / bottom * 100) / 100;
   }
 
   handleSubmit(e){
     e.preventDefault();
-    let result = this.calculatePayment();
-    this.interest = result - (this.state.loanAmount/this.state.numPeriods);
-    this.totalPaid = result * this.state.numPeriods;
+    let result = Math.floor(this.calculatePayment() * 100) / 100;
+    this.interest = Math.floor((result - (this.state.loanAmount/this.state.numPeriods)) * 100) / 100;
+    this.totalPaid = Math.floor((result * this.state.numPeriods) * 100) / 100;
     this.setState({
       payment: result
     });
     this.populateRemainingLoan();
   }
 
+  // componentWillUnmount(){
+  //   // this.remainingLoan = {}
+  // }
+
   displayResults(){
     if(!!this.state.payment){
       return(
         <div>
-          {Object.keys(this.remainingLoan).map(key => {
-            return <LoanPaymentIndex 
-                      key={key} 
-                      remainingLoan={this.remainingLoan} 
-                      id={key} 
-                      payment={this.state.payment} 
-                      total={this.totalPaid}
-                      loanAmount={this.state.loanAmount} 
-                      interest={this.interest}
-                    />
-          })}
+          <LoanPaymentSummary 
+            totalLoan={this.state.loanAmount}
+            loanWithInterest={this.state.payment*this.state.numPeriods}
+            payment={this.state.payment}
+          />
+          <div>
+            {Object.keys(this.remainingLoan).map(key => {
+              return <LoanPaymentIndex 
+                        key={key} 
+                        id={key} 
+                        remainingLoan={this.remainingLoan} 
+                        payment={this.state.payment} 
+                        total={this.totalPaid}
+                        loanAmount={this.state.loanAmount} 
+                        interest={this.interest}
+                      />
+            })}
+          </div>
         </div>
       )
     }
   }
 
-  update(field){
+  update(field){    
     return e => this.setState({
       [field]: e.currentTarget.value
     });
@@ -76,7 +91,7 @@ class LoanPaymentCalculator extends Component {
   
   render(){
     return(
-      <div>
+      <div id='calculator-form'>
         <form onSubmit={this.handleSubmit}>
           <input type="text" value={this.state.loanAmount} onChange={this.update('loanAmount')} placeholder='Loan Amount'/>
           <br/>

@@ -7,18 +7,19 @@ class LoanPaymentIndex extends Component {
   }
   
   componentWillUpdate(){
+    this.remainingBalance = 0;
     this.remainingBalance= this.props.total - this.props.remainingLoan[this.props.id]
   }
 
   render(){
-    debugger
     return(
       <div>
         <div>
-          Month {this.props.id}: {this.props.remainingLoan[this.props.id]}
+          Month {this.props.id}: {this.props.remainingLoan[this.props.id].toFixed(2)}
         </div>
-        <div>Remaining Balance: {this.remainingBalance}</div>
-        <div>Interest Paid: {this.props.interest * this.props.id }</div>
+        <div>Remaining Balance: {this.remainingBalance.toFixed(2)}</div>
+        <div>Interest Paid: {(this.props.interest * this.props.id).toFixed(2) }</div>
+        <div>--------------------------------------------------</div>
       </div>
     )
   }

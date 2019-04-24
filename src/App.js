@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import './loanPaymentCalculator.css'
 import LoanPaymentCalculator from './loanPaymentCalculator';
 
 class App extends Component {
