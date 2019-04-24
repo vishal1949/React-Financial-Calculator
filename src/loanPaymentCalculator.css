@@ -16,21 +16,50 @@ h1#title{
 
 form{
   margin: 0 auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   font-size: 25px;
+  
 }
 
 
-.input-field{
+input[type=text]{
   width: 20%;
   padding: 1.5%;
+  font-size: 20px;
+  border-radius: 5px;
+  text-align: right;
+  margin: 5px;
+  box-shadow: 3px 3px lightskyblue;
+
+  
 }
 .flex{
   display: flex;
   justify-content: center;
 }
 
-.submit-this{
-  width: 23.5%;
-  font-size: 40px;
+input[type=submit]{
+  background-color: blue;
+  border: none;
+  width: 23.4%;
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 1.5%;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px;
+  box-shadow: 3px 3px lightskyblue;
 }
+
+input[type=submit]:hover{
+  cursor: pointer;
+  opacity: .3;
+  color: blue;
+  background-color: white;
+  text-shadow: 5px 5px 10px black;
+  box-shadow: 3px 3px blue;
+
+}
+

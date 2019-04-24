@@ -99,9 +99,9 @@ class LoanPaymentCalculator extends Component {
             <input className='input-field' type="text" value={this.state.loanAmount} onChange={this.update('loanAmount')} placeholder='Loan Amount'/>
             <input className='input-field' type="text" value={this.state.interestRate} onChange={this.update('interestRate')} placeholder='Interest Rate %'/>
           </div>
-          <div>
+          <div className='flex'>
             <input className='input-field' type="text" value={this.state.numPeriods} onChange={this.update('numPeriods')} placeholder='Number of Months'/>
-            <input className='submit-this' type="submit" />
+            <input id='submit-this' type="submit" />
           </div>
         </form>
         <div>
