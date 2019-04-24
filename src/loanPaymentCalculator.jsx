@@ -91,14 +91,18 @@ class LoanPaymentCalculator extends Component {
   
   render(){
     return(
+
       <div id='calculator-form'>
+        <h1 id='title'>Loan Payment Calculator</h1>
         <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.loanAmount} onChange={this.update('loanAmount')} placeholder='Loan Amount'/>
-          <br/>
-          <input type="text" value={this.state.interestRate} onChange={this.update('interestRate')} placeholder='Interest Rate %'/>
-          <br />
-          <input type="text" value={this.state.numPeriods} onChange={this.update('numPeriods')} placeholder='Number of Months'/>
-          <input type="submit" />
+          <div className='flex'>
+            <input className='input-field' type="text" value={this.state.loanAmount} onChange={this.update('loanAmount')} placeholder='Loan Amount'/>
+            <input className='input-field' type="text" value={this.state.interestRate} onChange={this.update('interestRate')} placeholder='Interest Rate %'/>
+          </div>
+          <div>
+            <input className='input-field' type="text" value={this.state.numPeriods} onChange={this.update('numPeriods')} placeholder='Number of Months'/>
+            <input className='submit-this' type="submit" />
+          </div>
         </form>
         <div>
           {this.displayResults()}

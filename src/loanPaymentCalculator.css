@@ -1,4 +1,36 @@
 #calculator-form{
   margin: 0% 25%;
   border: 1px solid black;
+  text-align: center;
+  background-image: url(https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)
+}
+
+h1#title{
+  display: inline-block;
+  padding: 2%;
+  /* background-color: rgb(51,114,222); */
+  color: white;
+  font-size: 40px;
+  text-shadow: 5px 5px 10px black;
+}
+
+form{
+  margin: 0 auto;
+  border: 1px solid black;
+  font-size: 25px;
+}
+
+
+.input-field{
+  width: 20%;
+  padding: 1.5%;
+}
+.flex{
+  display: flex;
+  justify-content: center;
+}
+
+.submit-this{
+  width: 23.5%;
+  font-size: 40px;
 }
