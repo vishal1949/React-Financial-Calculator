@@ -43,7 +43,7 @@ input[type=text].input-field{
 }
 
 input[type=submit]{
-  background-color: blue;
+  background-color: rgb(51, 102, 255);
   border: none;
   width: 82.5%;
   color: white;
@@ -55,7 +55,7 @@ input[type=submit]{
   border-radius: 5px;
   margin: 5px;
   margin-left: 1px;
-  box-shadow: 3px 3px lightskyblue;
+  box-shadow: 2px 2px 5px white;
 }
 
 input[type=submit]:hover{
@@ -73,6 +73,7 @@ input[type=submit]:hover{
   height: 350px;
   display: grid;
   grid-auto-rows: max-content;
+  border-top: 2px solid black;
 }
 
 .table-headings{

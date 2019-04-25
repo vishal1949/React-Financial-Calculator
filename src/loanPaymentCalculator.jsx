@@ -99,7 +99,7 @@ class LoanPaymentCalculator extends Component {
     return(
 
       <div id='calculator-form'>
-        <h1 id='title'>Loan Payment Calculator</h1>
+        <h1 id='title'>Small Loan Payment Calculator</h1>
         <form onSubmit={this.handleSubmit}>
           <div className='flex'>
             <div>
