@@ -7,9 +7,8 @@ class LoanPaymentCalculator extends Component {
   constructor(props){
     super(props);
     this.remainingLoan = {}; //keep look up O(1) 
-
     //Might have to change remainging loan to state! for the rerender
-
+    this.moreInfo = true;
     this.totalPaid = 0;
     this.state = {
       payment: null,
@@ -21,6 +20,7 @@ class LoanPaymentCalculator extends Component {
     this.update = this.update.bind(this);
     this.populateRemainingLoan = this.populateRemainingLoan.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleMoreInfo = this.handleMoreInfo.bind(this);
   }
 
   populateRemainingLoan(){
@@ -49,9 +49,20 @@ class LoanPaymentCalculator extends Component {
     this.populateRemainingLoan();
   }
 
-  // componentWillUnmount(){
-  //   // this.remainingLoan = {}
-  // }
+  handleMoreInfo(e){
+    e.preventDefault();
+    let div = document.getElementById('more-info-table');
+    let show = document.getElementById('show-text');
+    if (this.moreInfo) {
+      this.moreInfo = false;
+      div.style.display = "none";
+      show.innerHTML = 'Show more?'
+    }else{
+      this.moreInfo = true;
+      div.style.display = "block";
+      show.innerHTML = 'Show less?'
+    }
+  }
 
   displayResults(){
     if(!!this.state.payment){
@@ -62,24 +73,27 @@ class LoanPaymentCalculator extends Component {
             loanWithInterest={this.state.payment*this.state.numPeriods}
             payment={this.state.payment}
           />
-          <div className='table-headers'>
-            <h3>Month</h3>
-            <h3>Paid Off</h3>
-            <h3>Remaining Loan</h3>
-            <h3>Interest paid so far!</h3>
-          </div>
-          <div className='scrollable-info'>
-            {Object.keys(this.remainingLoan).map(key => {
-              return <LoanPaymentIndex 
-                        key={key} 
-                        id={key} 
-                        remainingLoan={this.remainingLoan} 
-                        payment={this.state.payment} 
-                        total={this.totalPaid}
-                        loanAmount={this.state.loanAmount} 
-                        interest={this.interest}
-                      />
-            })}
+          <div id='show-text' onClick={(e) => {this.handleMoreInfo(e)}}>Show Less?</div>
+          <div id='more-info-table'>
+            <div className='table-headers'>
+              <h3>Month</h3>
+              <h3>Paid Off</h3>
+              <h3>Remaining Loan</h3>
+              <h3>Interest Paid So Far!</h3>
+            </div>
+            <div className='scrollable-info'>
+              {Object.keys(this.remainingLoan).map(key => {
+                return <LoanPaymentIndex 
+                          key={key} 
+                          id={key} 
+                          remainingLoan={this.remainingLoan} 
+                          payment={this.state.payment} 
+                          total={this.totalPaid}
+                          loanAmount={this.state.loanAmount} 
+                          interest={this.interest}
+                        />
+              })}
+            </div>
           </div>
         </div>
       )
