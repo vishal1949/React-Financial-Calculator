@@ -3,6 +3,7 @@
 
 #JavaScript and React Financial Loan Calculator
 
+This calculator is a sleek and elegent way to plan for a possible loan down the road. 
 
 
 
