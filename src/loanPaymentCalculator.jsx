@@ -1,20 +1,23 @@
 import React, {Component} from 'react'
 import LoanPaymentIndex from './loanPaymentIndex'
 import LoanPaymentSummary from './loanPaymentSummary';
+import { debug } from 'util';
 
 class LoanPaymentCalculator extends Component {
 
   constructor(props){
     super(props);
-    this.remainingLoan = {}; //keep look up O(1) 
-    //Might have to change remainging loan to state! for the rerender
-    this.moreInfo = true;
+    this.remainingLoan = {}; 
+    this.moreInfo = false;
     this.totalPaid = 0;
     this.state = {
       payment: null,
       loanAmount: '',
       interestRate: '',  //will be percentage value
       numPeriods: '',
+      totalPaid: 0,
+      remainingLoan: {},
+      test: null
     };
 
     this.update = this.update.bind(this);
@@ -23,7 +26,21 @@ class LoanPaymentCalculator extends Component {
     this.handleMoreInfo = this.handleMoreInfo.bind(this);
   }
 
+  componentDidUpdate(prevProps, prevState){
+    if(this.state.numPeriods !== prevState.numPeriods){
+      let result = Math.floor(this.calculatePayment() * 100) / 100;
+      this.interest = Math.floor((result - (this.state.loanAmount / this.state.numPeriods)) * 100) / 100;
+      this.totalPaid = Math.floor((result * this.state.numPeriods) * 100) / 100;
+      this.setState({
+        payment: result,
+        totalPaid: this.totalPaid,
+      });
+      this.populateRemainingLoan(); 
+    }
+  }
+
   populateRemainingLoan(){
+    this.remainingLoan = {};
     this.remainingLoan[1] = Math.floor(this.calculatePayment() * 100) / 100;
     let accumulator = Math.floor(this.calculatePayment() * 100) / 100;
     for(let i = 1; i < this.state.numPeriods; i++){
@@ -45,8 +62,9 @@ class LoanPaymentCalculator extends Component {
     this.totalPaid = Math.floor((result * this.state.numPeriods) * 100) / 100;
     this.setState({
       payment: result,
+      totalPaid: this.totalPaid,
     });
-    this.populateRemainingLoan();
+    this.populateRemainingLoan(); 
   }
 
   handleMoreInfo(e){
@@ -73,7 +91,7 @@ class LoanPaymentCalculator extends Component {
             loanWithInterest={this.state.payment*this.state.numPeriods}
             payment={this.state.payment}
           />
-          <div id='show-text' onClick={(e) => {this.handleMoreInfo(e)}}>Show Less?</div>
+          <div id='show-text' onClick={(e) => {this.handleMoreInfo(e)}}>Show more?</div>
           <div id='more-info-table'>
             <div className='table-headers'>
               <h3>Month</h3>
@@ -88,7 +106,7 @@ class LoanPaymentCalculator extends Component {
                           id={key} 
                           remainingLoan={this.remainingLoan} 
                           payment={this.state.payment} 
-                          total={this.totalPaid}
+                          total={this.state.totalPaid}
                           loanAmount={this.state.loanAmount} 
                           interest={this.interest}
                         />
@@ -106,9 +124,6 @@ class LoanPaymentCalculator extends Component {
     });
   } 
 
-  
-
-  
   render(){
     return(
 
