@@ -13,13 +13,11 @@ class LoanPaymentIndex extends Component {
 
   render(){
     return(
-      <div>
-        <div>
-          Month {this.props.id}: {this.props.remainingLoan[this.props.id].toFixed(2)}
-        </div>
-        <div>Remaining Balance: {this.remainingBalance.toFixed(2)}</div>
-        <div>Interest Paid: {(this.props.interest * this.props.id).toFixed(2) }</div>
-        <div>--------------------------------------------------</div>
+      <div className='each-month-info'>
+        <div>{this.props.id}</div>
+        <div>{this.props.remainingLoan[this.props.id].toFixed(2)}</div>
+        <div>{this.remainingBalance.toFixed(2)}</div>
+        <div>{(this.props.interest * this.props.id).toFixed(2) }</div>
       </div>
     )
   }

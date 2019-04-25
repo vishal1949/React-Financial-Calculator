@@ -24,7 +24,6 @@ form{
   font-size: 25px;
 }
 
-
 input[type=text]{
   width: 80%;
   padding: 1.5%;
@@ -34,15 +33,14 @@ input[type=text]{
   margin: 5px;
   box-shadow: 3px 3px lightskyblue;
 }
+
 input[type=text].input-field{
   width: 78%;
 }
+
 .submit-button{
   width: 25%;
 }
-
-
-
 
 input[type=submit]{
   background-color: blue;
@@ -70,3 +68,16 @@ input[type=submit]:hover{
 
 }
 
+.scrollable-info{
+  overflow: scroll; 
+  height: 350px;
+  display: grid;
+  grid-auto-rows: max-content;
+}
+
+.table-headings{
+  display: flex;
+  justify-content: space-evenly;
+  align-self: center;
+  border: 1px solid red;
+}
