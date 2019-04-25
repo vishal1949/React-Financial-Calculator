@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/React-Financial-Calculator/static/js/runtime~main.3cbf312c.js"
   },
   {
-    "revision": "58a99f897dd0ce9d820a",
+    "revision": "049e8fdc857fb006d98c",
     "url": "/React-Financial-Calculator/static/js/main.28f44d1f.chunk.js"
   },
   {
@@ -12,11 +12,11 @@ self.__precacheManifest = [
     "url": "/React-Financial-Calculator/static/js/2.26904ca2.chunk.js"
   },
   {
-    "revision": "58a99f897dd0ce9d820a",
-    "url": "/React-Financial-Calculator/static/css/main.f1878b8a.chunk.css"
+    "revision": "049e8fdc857fb006d98c",
+    "url": "/React-Financial-Calculator/static/css/main.602f5b91.chunk.css"
   },
   {
-    "revision": "9de377177d19e6d029f314104e5b7652",
+    "revision": "2939e343ead73428b7a3a9f485271e27",
     "url": "/React-Financial-Calculator/index.html"
   }
 ];
