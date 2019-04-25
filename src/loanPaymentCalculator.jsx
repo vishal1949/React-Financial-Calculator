@@ -13,9 +13,9 @@ class LoanPaymentCalculator extends Component {
     this.totalPaid = 0;
     this.state = {
       payment: null,
-      loanAmount: null,
-      interestRate: null,  //will be percentage value
-      numPeriods: null,
+      loanAmount: '',
+      interestRate: '',  //will be percentage value
+      numPeriods: '',
     };
 
     this.update = this.update.bind(this);
@@ -44,7 +44,7 @@ class LoanPaymentCalculator extends Component {
     this.interest = Math.floor((result - (this.state.loanAmount/this.state.numPeriods)) * 100) / 100;
     this.totalPaid = Math.floor((result * this.state.numPeriods) * 100) / 100;
     this.setState({
-      payment: result
+      payment: result,
     });
     this.populateRemainingLoan();
   }
@@ -110,8 +110,6 @@ class LoanPaymentCalculator extends Component {
       </div>
     )
   }
-
-
 }
 
 export default LoanPaymentCalculator;
