@@ -47,7 +47,7 @@ input[type=text].input-field{
 input[type=submit]{
   background-color: blue;
   border: none;
-  width: 83%;
+  width: 82.5%;
   color: white;
   font-size: 21px;
   font-weight: bolder;
@@ -56,6 +56,7 @@ input[type=submit]{
   cursor: pointer;
   border-radius: 5px;
   margin: 5px;
+  margin-left: 1px;
   box-shadow: 3px 3px lightskyblue;
 }
 
