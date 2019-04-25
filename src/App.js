@@ -3,14 +3,13 @@ import './App.css';
 
 import './loanPaymentCalculator.css';
 import './loanPaymentSummary.scss';
-import './loanPaymentIndex.css';
+import './loanPaymentIndex.scss';
 import LoanPaymentCalculator from './loanPaymentCalculator';
 
 class App extends Component {
   render() {
     return (
       <div>
-        YOU ARE IN APP.js
         <LoanPaymentCalculator />
       </div>
     );

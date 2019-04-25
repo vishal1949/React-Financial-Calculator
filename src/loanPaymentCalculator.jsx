@@ -63,10 +63,10 @@ class LoanPaymentCalculator extends Component {
             payment={this.state.payment}
           />
           <div className='table-headers'>
-            <div>Month</div>
-            <div>Paid Off</div>
-            <div>Remaining Loan</div>
-            <div>Interest paid so far!</div>
+            <h3>Month</h3>
+            <h3>Paid Off</h3>
+            <h3>Remaining Loan</h3>
+            <h3>Interest paid so far!</h3>
           </div>
           <div className='scrollable-info'>
             {Object.keys(this.remainingLoan).map(key => {

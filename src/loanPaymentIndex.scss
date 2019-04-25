@@ -1,0 +1,23 @@
+.table-headers, .each-month-info{
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  padding: 2% 5%;
+
+}
+
+.table-headers * , .each-month-info * {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;  
+} 
+
+.table-headers{
+  margin: 0;
+  color: white;
+  margin-bottom: -3%;
+  font-size: 20px;
+  text-shadow: 5px 5px 5px black;
+  h3{
+    padding: 3px;
+  }
+}
