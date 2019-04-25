@@ -96,12 +96,24 @@ class LoanPaymentCalculator extends Component {
         <h1 id='title'>Loan Payment Calculator</h1>
         <form onSubmit={this.handleSubmit}>
           <div className='flex'>
-            <input className='input-field' type="text" value={this.state.loanAmount} onChange={this.update('loanAmount')} placeholder='Loan Amount'/>
-            <input className='input-field' type="text" value={this.state.interestRate} onChange={this.update('interestRate')} placeholder='Interest Rate %'/>
+            <div>
+              <i class="fas fa-dollar-sign"></i>
+              <input className='' type="text" value={this.state.loanAmount} onChange={this.update('loanAmount')} placeholder='Loan Amount($)'/>
+            </div>
+            <div>
+              <input className='' type="text" value={this.state.interestRate} onChange={this.update('interestRate')} placeholder='Interest Rate(%)'/>
+              <i class="fas fa-percent"></i>
+            </div>
           </div>
           <div className='flex'>
-            <input className='input-field' type="text" value={this.state.numPeriods} onChange={this.update('numPeriods')} placeholder='Number of Months'/>
-            <input id='submit-this' type="submit" />
+            <div>
+              <i class="fas fa-calendar-week"></i>
+              <input className='input-field' type="text" value={this.state.numPeriods} onChange={this.update('numPeriods')} placeholder='Number of Months'/>
+            </div>
+            <div className='submit-button'>
+              <input id='submit-this' type="submit" />
+              <i class="fas fa-check-circle"></i>
+            </div>
           </div>
         </form>
         <div>

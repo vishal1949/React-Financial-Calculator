@@ -1,6 +1,30 @@
+#summary-title{
+  margin-bottom: 0;
+  padding: 2%;
+  color: white;
+  text-shadow: 5px 5px 10px black;
+  text-decoration: underline black;
+}
+
 #summary{
   display: grid; 
-  border: 1px solid red;
+  width: 100%;
+  margin: 0 25%;
+  padding: 10px;
+  text-align: right;
   grid-template-columns: 70% 30%;
   grid-template-rows: 25% 25% 25% 25%;
+}
+
+div#summary *{ //selects all div elements under the id summary
+    border-bottom: 2px dashed black;
+    color: white;
+    font-size: 18px;
+    margin: 5px;
+    padding: 3px;
+    margin-right: 0px;
+  }
+
+#align-left{
+  text-align: left;
 }

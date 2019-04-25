@@ -8,16 +8,19 @@ class LoanPaymentSummary extends Component{
 
   render(){
     return(
-      <div className='flex'>
-        <div id='summary'>
-          <div>Total Loan: </div>
-          <div>{Math.floor(this.props.totalLoan * 100) / 100}</div>
-          <div>Total loan with interest </div>
-          <div>{Math.floor(this.props.loanWithInterest * 100) / 100}</div>
-          <div>Monthly Payment </div>
-          <div>{this.props.payment}</div>
-          <div>Total interest charged </div>
-          <div>{Math.floor((this.props.loanWithInterest - this.props.totalLoan) * 100) / 100}</div>
+      <div>
+        <h2 id='summary-title'>Overall Summary of Loan</h2>
+        <div className='flex'>
+          <div id='summary'>
+            <div id='align-left'>Total Loan: </div>
+            <div>${Math.floor(this.props.totalLoan * 100) / 100}</div>
+            <div id='align-left'>Total loan with interest </div>
+            <div>${Math.floor(this.props.loanWithInterest * 100) / 100}</div>
+            <div id='align-left'>Monthly Payment </div>
+            <div>${this.props.payment}</div>
+            <div id='align-left'>Total interest charged </div>
+            <div>${Math.floor((this.props.loanWithInterest - this.props.totalLoan) * 100) / 100}</div>
+          </div>
         </div>
       </div>
     )
